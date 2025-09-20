@@ -1,0 +1,13 @@
+{
+  "dependencies": {
+    "@google/genai": "^1.20.0",
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "nodemon": "^3.1.10"
+  },
+  "type": "module",
+  "scripts": {
+      "start": "node scripts/aiServer.js",
+      "dev": "nodemon scripts/aiServer.js"
+    }
+}

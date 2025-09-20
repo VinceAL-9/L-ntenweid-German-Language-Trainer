@@ -25,37 +25,65 @@
             }
         }
 
-        // Function to send message (to be implemented with chatbot logic)
-        function sendMessage() {
+        // Function to send message
+        async function sendMessage() {
             const input = document.getElementById('userInput');
             const message = input.value.trim();
+            const responseArea = document.getElementById('chatbotResponse');
             
             if (message) {
                 // Clear the welcome message if it's the first message
-                const responseArea = document.getElementById('chatbotResponse');
                 if (responseArea.querySelector('.welcome-message')) {
                     responseArea.innerHTML = '';
                 }
                 
-                // Add user message to chat (you can style this differently)
+                // Add user message to chat
                 responseArea.innerHTML += `
                     <div style="margin-bottom: 15px;">
                         <strong>Du:</strong> ${message}
                     </div>
                 `;
                 
-                // Clear input
+                // Clear input and disable it while processing
                 input.value = '';
-                
-                // Here you would typically send the message to your chatbot backend
-                // and display the response
-                responseArea.innerHTML += `
+                input.disabled = true;
+
+                try {
+                    const aiResponse = await fetch(`http://localhost:3000/${currentLevel}`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ prompt: message }),
+                    });
+
+                    if (!aiResponse.ok) {
+                        throw new Error(`HTTP error! status: ${aiResponse.status}`);
+                    }
+
+                    const aiResponseJson = await aiResponse.json();
+                    const formattedResponse = marked.parse(aiResponseJson.response);
+                    
+                    responseArea.innerHTML += `
                         <div style="margin-bottom: 15px; color: #ffa500;">
-                            <strong>Tutor:</strong> [Chatbot response for level ${currentLevel} will appear here]
+                            <strong>Tutor:</strong> ${formattedResponse}
                         </div>
                     `;
-                // Scroll to bottom
-                responseArea.scrollTop = responseArea.scrollHeight;
+                } catch (error) {
+                    console.error('Error:', error);
+                    responseArea.innerHTML += `
+                        <div style="margin-bottom: 15px; color: #ff0000;">
+                            <strong>System:</strong> Es tut mir leid, aber ich konnte keine Verbindung zum Server herstellen. Bitte versuchen Sie es später erneut.
+                        </div>
+                    `;
+                } finally {
+                    // Re-enable input
+                    input.disabled = false;
+                    input.focus();
+                    
+                    // Scroll to bottom
+                    responseArea.scrollTop = responseArea.scrollHeight;
+                }
             }
         }
 
