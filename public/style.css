@@ -1,0 +1,177 @@
+* {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background-color: #2b2b2b;
+    color: white;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Navbar Styles */
+.navbar-container {
+    background-color: #000000;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.brand-name {
+    font-size: 42px;
+    font-weight: 300;
+    color: white;
+    margin: 0;
+}
+
+.header-name {
+    text-decoration: none;
+    color: white;
+}
+
+.level-buttons {
+    display: flex;
+    gap: 15px;
+}
+
+.level-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+    font-size: 28px;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    opacity: 0.6;
+}
+
+/* Specific button states */
+.level-btn.active {
+    opacity: 1;
+    transform: scale(1.1);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+}
+
+#btnLevelA.active {
+    background-color: #28a745;
+    box-shadow: 0 0 15px rgba(40, 167, 69, 0.5);
+}
+
+#btnLevelB.active {
+    background-color: #ffc107;
+    box-shadow: 0 0 15px rgba(220, 53, 69, 0.5);
+}
+
+#btnLevelC.active {
+    background-color: #dc3545;
+    color: #000;
+    box-shadow: 0 0 15px rgba(255, 193, 7, 0.5);
+}
+
+.level-btn:hover {
+    transform: scale(1.1);
+    opacity: 0.8;
+}
+
+/* Main Content Area */
+.main-content {
+    padding: 40px;
+    height: calc(100vh - 90px);
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+/* Response Area */
+.response-area {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    flex: 1;
+    border: 2px solid #dc3545;
+    border-radius: 8px;
+    padding: 30px;
+    background-color: rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 400px;
+    position: relative;
+}
+
+.welcome-message {
+    font-size: 48px;
+    font-weight: 600;
+    color: #ffa500;
+    font-style: italic;
+    text-align: center;
+}
+
+#chatbotResponse {
+    width: 100%;
+    height: 100%;
+    color: white;
+    font-size: 18px;
+    line-height: 1.6;
+    overflow-y: auto;
+    padding: 20px;
+}
+
+/* Input Area */
+.input-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+#userInput {
+    width: 100%;
+    padding: 20px 30px;
+    border-radius: 50px;
+    border: none;
+    font-size: 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #333;
+    font-style: italic;
+    transition: all 0.3s ease;
+}
+
+#userInput:focus {
+    outline: none;
+    background-color: white;
+    box-shadow: 0 4px 20px rgba(255, 255, 255, 0.2);
+}
+
+#userInput::placeholder {
+    color: #999;
+    font-style: italic;
+}
+
+/* Scrollbar Styling */
+#chatbotResponse::-webkit-scrollbar {
+    width: 8px;
+}
+
+#chatbotResponse::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+}
+
+#chatbotResponse::-webkit-scrollbar-thumb {
+    background: rgba(220, 53, 69, 0.5);
+    border-radius: 4px;
+}
+
+#chatbotResponse::-webkit-scrollbar-thumb:hover {
+    background: rgba(220, 53, 69, 0.7);
+}

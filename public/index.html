@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Läntenweid - German Language Trainer</title>
+    <link rel="icon" type="image/svg" href="https://flagcdn.com/de.svg"">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar-container">
+        <a class="header-name" href="./index.html"><h1 class="brand-name">Läntenweid</h1></a>
+        <div class="level-buttons">
+            <button id="btnLevelA" class="level-btn active" onclick="selectLevel('A')">A</button>
+            <button id="btnLevelB" class="level-btn" onclick="selectLevel('B')">B</button>
+            <button id="btnLevelC" class="level-btn" onclick="selectLevel('C')">C</button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Response Area -->
+        <div class="response-area">
+            <div id="chatbotResponse">
+                <div class="welcome-message">Willkommen, Lerner!</div>
+            </div>
+        </div>
+
+        <!-- Input Area -->
+        <div class="input-container">
+            <input 
+                type="text" 
+                id="userInput" 
+                class="form-control" 
+                placeholder="Was möchtest du lernen?"
+                onkeypress="handleKeyPress(event)"
+            >
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="../scripts/index.js"></script>
+</body>
+</html>
