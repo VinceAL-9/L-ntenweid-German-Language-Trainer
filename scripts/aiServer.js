@@ -1,13 +1,25 @@
 import express from "express";
 import cors from "cors";
 import { GoogleGenAI } from "@google/genai";
+import dotenv from "dotenv";
+
+// Load environment variables from .env (if present)
+dotenv.config();
 
 const app = express();
 app.use(express.json());
 app.use(cors());
 
 const PORT = process.env.PORT || 3000;
-const ai = new GoogleGenAI({ apiKey: "AIzaSyAYO_Vq37R7XOsUCFoYfREtpUE09IxFFKY" });
+
+// Read API key from environment
+const GEMINI_API = process.env.GEMINI_API;
+if (!GEMINI_API) {
+    console.error('Missing GEMINI_API environment variable. Please set GEMINI_API in a .env file or your environment.');
+    // Do not crash the process immediately; the server will fail when trying to call the API but this log helps debugging.
+}
+
+const ai = new GoogleGenAI({ apiKey: GEMINI_API });
 
 const MAX_HISTORY = 15; // Maximum number of exchanges to keep
 
