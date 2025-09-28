@@ -32,21 +32,19 @@ class ConversationManager {
             role: "system",
             content: systemPrompt
         }];
+        this.lastAccess = Date.now(); // Added this property
     }
 
+    // Update lastAccess whenever the conversation is used
     addUserMessage(message) {
-        this.history.push({
-            role: "user",
-            content: message
-        });
+        this.history.push({ role: "user", content: message });
+        this.lastAccess = Date.now(); // Update timestamp
         this.trimHistory();
     }
 
     addAssistantMessage(message) {
-        this.history.push({
-            role: "assistant",
-            content: message
-        });
+        this.history.push({ role: "assistant", content: message });
+        this.lastAccess = Date.now(); // Update timestamp
         this.trimHistory();
     }
 
@@ -61,6 +59,7 @@ class ConversationManager {
     }
 
     getHistory() {
+        this.lastAccess = Date.now(); // Update timestamp
         return this.history;
     }
 }
